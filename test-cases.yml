@@ -5,6 +5,7 @@
     Пользователь должен иметь возможность создавать игру самостоятельно
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     - Lavel = *
     - Game Type = With other users
@@ -26,6 +27,7 @@
     Пользователь должен иметь возможность создавать игру самостоятельно
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     - Lavel = *
     - Game Type = With a friend
@@ -49,6 +51,7 @@
     Пользователь должен иметь возможность создавать игру самостоятельно
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     - Lavel = *
     - Game Type = With a bot
@@ -70,6 +73,7 @@
     Пользователь должен иметь возможность вступать в открытые игры
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     -
   steps:
@@ -84,6 +88,7 @@
     Пользователь должен иметь возможность видеть написание кода соперника
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     -
   steps:
@@ -170,6 +175,7 @@
     Пользователь должен иметь возможность видеть свой рейтинг
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     -
   steps:
@@ -188,6 +194,7 @@
     Пользователь должен иметь возможность просматривать рейтинг других пользователей
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     -
   steps:
@@ -215,6 +222,7 @@
     Пользователь должен иметь возможность просматривать завершенные игры в записи
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     -
   steps:
@@ -230,6 +238,7 @@
     Пользователь должен иметь возможность присоединиться к игре в качестве зрителя
   prerequisites: |
     Открыта главная страница Codebattle
+    Пользователь авторизирован
   test-data: |
     -
   steps:
@@ -237,3 +246,124 @@
     - Нажать кнопку "Show"
   expected-result: | 
     Отображена страница с игрой других пользователей
+
+- summary: |
+    Проверка возможности создавать турниры
+  requirement: |
+    Пользователь должен иметь возможность создавать турниры
+  prerequisites: |
+    Открыта главная страница Codebattle
+    Пользователь авторизирован
+  test-data: |
+    - Name = Tournament
+    - Type = individual
+    - Access Type = public
+    - Starts at (UTC) = 08.04.2023 20:00
+    - Level = elementary
+    - Players limit = 16
+    - Defult lauguage = python
+    - Match timeout in seconds = 107
+  steps:
+    - Во вкладке "TOURNAMENTS" нажать на ссылку "You may want to create one"
+    - Заполнить строку ввода "Name"
+    - Выбрать значение из выпадающего списка "Type"
+    - Выбрать значение из выпадающего списка "Access Type"
+    - Выбрать значения в выпадающем окне "Starts at (UTC)"
+    - Выбрать значение из выпадающего списка "Level"
+    - Выбрать значение из выпадающего списка "Players limit"
+    - Выбрать значение из выпадающего списка "Defult lauguage"
+    - Установить значение в "Match timeout in seconds"
+    - Нажать кнопку "Create"
+  expected-result: | 
+    Отображена страница, содержащая текст, что турнир скоро начнется
+    
+- summary: |
+    Проверка возможности зарегестрироваться на сайте
+  requirement: |
+    Пользователь должен иметь возможность зарегестрироваться на сайте
+  prerequisites: |
+    Открыта стартовая страница Codebattle
+  test-data: |
+    - Nickname = Vaysl7599
+    - Email = elizaveta7599@mail.ru
+    - Password = Parol777
+  steps:
+    - Нажать кнопку "Sing Up"
+    - Заполнить строку ввода "Nickname"
+    - Заполнить строку ввода "Email"
+    - Заполнить строку ввода "Password"
+    - Заполнить строку ввода "Password" (подтверждение пароля)
+    - Нажать кнопку "Submit"
+  expected-result: | 
+    Пользователь зарегистрирован, отображена главная страница Codebattle
+    
+- summary: |
+    Проверка возможности авторизоваться на сайте через почту
+  requirement: |
+    Пользователь должен иметь возможность авторизоваться на сайте
+  prerequisites: |
+    - Пользователь зарегистрирован в Codebattle через почту
+    - Открыта стартовая страница Codebattle
+  test-data: |
+    - Nickname = Vaysl7599
+    - Email = elizaveta7599@mail.ru
+    - Password = Parol777
+  steps:
+    - Нажать кнопку "Sing In"
+    - Заполнить строку ввода "Email"
+    - Заполнить строку ввода "Password"
+    - Нажать кнопку "Submit"
+  expected-result: | 
+    Отображена главная страница Codebattle, содержащая всплывающую строку с текстом "Successfully authenticated"
+    
+- summary: |
+    Проверка возможности авторизоваться на сайте через Github
+  requirement: |
+    Пользователь должен иметь возможность авторизоваться на сайте
+  prerequisites: |
+    - Пользователь зарегистрирован на Github
+    - Открыта стартовая страница Codebattle
+  test-data: |
+    - 
+  steps:
+    - Нажать кнопку "Sign in with Github"
+    - Ввести логин от Github
+    - Ввести пароль от Github
+    - Нажать кнопку "Log in"
+  expected-result: | 
+    Отображена главная страница Codebattle, содержащая всплывающую строку с текстом "Successfully authenticated"
+    
+- summary: |
+    Проверка возможности авторизоваться на сайте через Discord
+  requirement: |
+    Пользователь должен иметь возможность авторизоваться на сайте
+  prerequisites: |
+    - Пользователь зарегистрирован на Discord
+    - Открыта стартовая страница Codebattle
+  test-data: |
+    - 
+  steps:
+    - Нажать кнопку "Sign in with Discord"
+    - Ввести логин от Discord
+    - Ввести пароль от Discord
+    - Нажать кнопку "Log in"
+  expected-result: | 
+    Отображена главная страница Codebattle, содержащая всплывающую строку с текстом "Successfully authenticated"   
+    
+- summary: |
+    Проверка авторизации незарегистрированного пользователя
+  requirement: |
+    Пользователь должен иметь возможность авторизоваться на сайте
+  prerequisites: |
+    Открыта стартовая страница Codebattle
+  test-data: |
+    - Email = hahaha@mail.ru
+    - Password = hahaha777
+  steps:
+    - Нажать кнопку "Sign In"
+    - Заполнить строку ввода "Email"
+    - Заполнить строку ввода "Password"
+    - Нажать кнопку "Submit"
+  expected-result: | 
+    Отображено сообщение "EMAIL_NOT_FOUND"
+
