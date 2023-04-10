@@ -366,3 +366,18 @@
     - Нажать кнопку "Submit"
   expected-result: | 
     Отображено сообщение "EMAIL_NOT_FOUND"
+
+- summary: |
+    Проверка безопасности сайта
+  requirement: |
+    Сайт должен быть безопасным и защищать данные пользователя
+  prerequisites: |
+    Открыта главная страница Codebattle
+  test-data: |
+    https://codebattle.hexlet.io/#lobby
+  steps:
+    - Нажать на адресную строку  
+  expected-result: |
+    Текст адресной строки содержит "https://"
+    
+    
